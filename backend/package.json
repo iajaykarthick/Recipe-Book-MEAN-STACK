@@ -1,0 +1,11 @@
+{
+  "name": "recipe-book-server",
+  "version": "1.0.0",
+  "description": "Server side implementation of recipe book app using Node + Express + MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ajay Karthick",
+  "license": "ISC"
+}
