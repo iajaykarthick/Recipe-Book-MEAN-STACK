@@ -1,0 +1,77 @@
+<mat-card color="primary">
+  <mat-card-header>
+    <mat-card-title><h1 class="mat-h1">Create a Recipe</h1></mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="form" (submit)="onSaveRecipe()">
+    <mat-form-field appearance="outline" class="full-width-fields">
+      <mat-label>Recipe name</mat-label>
+      <input
+      matInput
+      formControlName="recipeName"
+      placeholder="Enter the recipe name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width-fields">
+      <mat-label>Style</mat-label>
+      <input
+      matInput
+      formControlName="style"
+      placeholder="Enter the style of your recipe">
+    </mat-form-field>
+
+    <div class="ingredient-container"
+      formArrayName="ingredients"
+      *ngFor="let ingredient of form.get('ingredients')['controls']; let i = index;">
+      <div [formGroupName]="i">
+        <mat-form-field appearance="fill" id="ingredient">
+          <mat-label>Ingredient {{ i + 1 }}</mat-label>
+          <input
+          matInput
+          formControlName="ingredientName"
+          placeholder="Enter the ingredient name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" id="quantity">
+            <mat-label>Quantity of ingredient {{ i + 1 }} </mat-label>
+            <input
+            matInput
+            formControlName="quantity"
+            placeholder="Enter the quantity of the ingredient">
+        </mat-form-field>
+      </div>
+    </div>
+    <button mat-stroked-button type="button" color="primary" (click)="addIngredient()">Add Ingredient</button>
+
+    <mat-form-field appearance="fill" class="full-width-fields">
+      <mat-label>Servings</mat-label>
+      <input
+      matInput
+      type="number"
+      formControlName="servings"
+      placeholder="Enter the number of servings">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width-fields">
+      <mat-label>Cooking Time</mat-label>
+      <input
+      matInput
+      formControlName="cookingTime"
+      placeholder="Enter the time it take to cook this recipe">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width-fields">
+      <mat-label>Calories per serving</mat-label>
+      <input
+      matInput
+      formControlName="calories"
+      placeholder="Enter the calories per serving">
+    </mat-form-field>
+    <mat-card-actions>
+      <button
+        mat-stroked-button
+        color="primary"
+        type="submit">Save Recipe</button>
+    </mat-card-actions>
+  </form>
+  </mat-card>
