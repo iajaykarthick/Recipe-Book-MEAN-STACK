@@ -16,11 +16,7 @@ router.post('', (req, res, next) => {
   console.log(recipe);
   recipe.save().then(createdRecipe => {
     res.status(201).json({
-      message: "Post added successfully",
-      post : {
-        ...createdRecipe,
-        id: createdRecipe._id,
-      }
+      message: "Post added successfully"
     });
   });
 });
@@ -31,9 +27,7 @@ router.get('', (req, res, next) => {
   const recipesGetQuery = Recipe.find();
   recipesGetQuery.then(fetchedRecipes => {
     res.status(200).json({
-      post : {
         recipes: fetchedRecipes
-      }
     });
   });
 });
