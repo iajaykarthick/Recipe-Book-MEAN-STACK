@@ -44,3 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#backend dependencies
+backend/node_modules
+
+#backend env file
+backend/.env
