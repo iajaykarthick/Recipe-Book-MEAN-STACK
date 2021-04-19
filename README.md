@@ -1,3 +1,5 @@
+# Recipe Book 🍴📖 Application using Angular + Node / Express + MongoDB NoSQL
+
 # RecipeBookApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.7.
