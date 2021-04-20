@@ -41,6 +41,13 @@ export class RecipeBookComponent implements OnInit, OnDestroy {
       });
   }
 
+  deleteRecipe(recipeId: string) {
+    this.recipesService.deleteRecipe(recipeId)
+    .subscribe(() => {
+      this.recipesService.getRecipes();
+    });
+  }
+
   ngOnDestroy() {
     if (this.mediaSub) {
       this.mediaSub.unsubscribe();
