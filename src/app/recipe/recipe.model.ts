@@ -6,6 +6,7 @@ export interface Recipe {
   servings: number;
   cookingTime: string;
   calories: string;
+  imagePath: string;
 }
 
 export interface Ingredients {
