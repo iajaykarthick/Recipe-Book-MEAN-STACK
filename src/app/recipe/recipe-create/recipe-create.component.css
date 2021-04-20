@@ -4,13 +4,6 @@ mat-card {
 
 }
 
-
-::ng-deep .mat-card-header-text {
-  /* CSS styles go here */
-  margin: 0 !important;
-  color: crimson;
-}
-
 .mat-card-content{
   padding:5px !important;
 }
@@ -33,3 +26,15 @@ button {
 }
 
 
+input[type="file"] {
+  visibility: hidden;
+}
+
+.image-preview {
+  height: 5rem;
+  margin: 1rem 0;
+}
+
+.image-preview img {
+  height: 100%;
+}
