@@ -1,5 +1,6 @@
 mat-toolbar {
   padding: 0 32px;
+  margin-bottom: 1rem;
 }
 .logo {
   padding: 1rem;

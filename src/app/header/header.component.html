@@ -1,13 +1,15 @@
 <mat-toolbar color="primary">
   <div class="logo">
     <span>
-      <mat-icon svgIcon="cultery"></mat-icon> Recipe Book <mat-icon svgIcon="open-book"></mat-icon>
+      <a routerLink="/">
+        <mat-icon svgIcon="cultery"></mat-icon> Recipe Book <mat-icon svgIcon="open-book"></mat-icon>
+      </a>
     </span>
   </div>
   <span class="spacer"></span>
   <ul>
     <li>
-      <a mat-stroked-button color="secondary">New Recipe</a>
+      <a mat-stroked-button routerLink="/create" routerLinkActive="mat-accent" color="secondary">New Recipe</a>
     </li>
     <!-- <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
