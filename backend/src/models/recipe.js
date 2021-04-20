@@ -20,7 +20,8 @@ const recipeSchema = mongoose.Schema({
   },
   servings: Number,
   cookingTime: String,
-  calories: String
+  calories: String,
+  imagePath: { type: String, required: true }
 })
 
 module.exports = mongoose.model('Recipe', recipeSchema);
