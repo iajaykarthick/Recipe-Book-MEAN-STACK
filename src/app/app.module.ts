@@ -8,20 +8,29 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { RecipeCreateComponent } from './recipe/recipe-create/recipe-create.component';
+import { RecipeBookComponent } from './recipe/recipe-book/recipe-book.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material/grid-list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatListModule} from '@angular/material/list';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTableModule} from '@angular/material/table';
 
+
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipeCreateComponent
+    RecipeCreateComponent,
+    RecipeBookComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +43,13 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    MatAutocompleteModule,
+    MatListModule,
+    MatTableModule,
+    MatExpansionModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
