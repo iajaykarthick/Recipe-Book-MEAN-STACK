@@ -14,7 +14,17 @@ export class RecipesService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  addRecipe(recipe: Recipe) {
+  addRecipe(recipeId: string, recipeName: string, style: string, ingredients: [], servings: number, cookingTime: string, calories: string, image: File ) {
+    const recipe = new FormData();
+    recipe.append('id', recipeId);
+    recipe.append('recipeName', recipeName);
+    recipe.append('style', style);
+    recipe.append('ingredients', JSON.stringify(ingredients));
+    recipe.append('servings', servings.toString());
+    recipe.append('cookingTime', cookingTime);
+    recipe.append('calories', calories);
+    recipe.append('image', image, recipeName);
+
     this.http.post<{recipe: any}>('http://localhost:3000/api/recipes', recipe)
       .subscribe(responseData => {
         console.log(responseData.recipe);
@@ -29,6 +39,10 @@ export class RecipesService {
         this.recipesBook = responseData.recipes;
           this.recipesUpdated.next( [...this.recipesBook] );
       });
+  }
+
+  deleteRecipe(recipeId: string) {
+    return this.http.delete('http://localhost:3000/api/recipes/' + recipeId);
   }
 
   getRecipesUpdatedListener() {
