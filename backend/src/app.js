@@ -1,9 +1,12 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const recipeRoutes = require('./routes/recipes');
 
 // Parsing incoming json to an object so we can access it in our request handlers
 app.use(express.json());
+
+app.use("/images", express.static(path.join('src/images')));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
