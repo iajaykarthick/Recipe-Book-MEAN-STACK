@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { Recipe } from "../recipe.model";
+import { RecipesService } from "../recipes.service";
 
 @Component({
   selector: 'app-recipe-create',
@@ -12,9 +13,10 @@ export class RecipeCreateComponent implements OnInit {
   form: FormGroup;
   ingredients: FormArray;
 
-  recipe: Recipe;
+  private recipe: Recipe;
+  private recipeId: string = null;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private recipesService: RecipesService) {}
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({ // wrapping key inside single quote is optional
@@ -44,6 +46,7 @@ export class RecipeCreateComponent implements OnInit {
       return;
     }
     this.recipe = {
+      _id: this.recipeId,
       recipeName: this.form.value.recipeName,
       style: this.form.value.style,
       ingredients: this.form.value.ingredients,
@@ -51,6 +54,6 @@ export class RecipeCreateComponent implements OnInit {
       cookingTime: this.form.value.cookingTime,
       calories: this.form.value.calories
     }
-    console.log(this.recipe);
+    this.recipesService.addRecipe(this.recipe);
   }
 }
