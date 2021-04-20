@@ -1,0 +1,87 @@
+<div fxLayout="row wrap">
+
+  <div
+    *ngFor="let recipe of recipes"
+    fxFlex="0 0 100%"
+    [ngStyle]="{'margin.px': 6, 'margin.bottom.px': 20}"
+    [ngStyle.gt-xs]="{'margin.px': 6, 'margin.bottom.px': 20}"
+    fxFlex.gt-xs="0 0 calc(50% - 12px)"
+    [ngStyle.gt-sm]="{'margin.px': 6, 'margin.bottom.px': 20}"
+    fxFlex.gt-sm="0 0 calc(25% - 12px)"
+    [ngStyle.gt-md]="{'margin.px': 6, 'margin.bottom.px': 20}"
+    fxFlex.gt-md="0 0 calc(20% - 12px)">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> {{ recipe.recipeName }} </mat-card-title>
+        <mat-card-subtitle>{{ recipe.style }}</mat-card-subtitle>
+      </mat-card-header>
+      <img src="assets/img/recipes/recipe_test.jpg" alt="" mat-card-image>
+      <mat-card-content>
+
+        <table mat-table [dataSource]="getTableData(recipe)" class="mat-elevation-z8">
+
+          <!-- Servings Column -->
+          <ng-container matColumnDef="servings">
+            <th mat-header-cell *matHeaderCellDef> Servings </th>
+            <td mat-cell *matCellDef="let element"> {{element.servings}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="cookingTime">
+            <th mat-header-cell *matHeaderCellDef> Cooking Time </th>
+            <td mat-cell *matCellDef="let element"> {{element.cookingTime}} </td>
+          </ng-container>
+
+          <!-- Calories Column -->
+          <ng-container matColumnDef="calories">
+            <th mat-header-cell *matHeaderCellDef> Calories Per Serving </th>
+            <td mat-cell *matCellDef="let element"> {{element.calories}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-expansion-panel
+          (opened)="panelOpenState[recipe._id] = true"
+          (closed)="panelOpenState[recipe._id] = false"
+          >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{panelOpenState[recipe._id] ? 'Ingredient details' : 'To view Ingredients'}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{panelOpenState[recipe._id] ? '' : 'Click here'}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <table mat-table [dataSource]="recipe.ingredients" class="mat-elevation-z8">
+
+            <!-- Ingredient Name Column -->
+            <ng-container matColumnDef="ingredientName">
+              <th mat-header-cell *matHeaderCellDef> Ingredient Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.ingredientName}} </td>
+            </ng-container>
+
+            <!-- Quantity Column -->
+            <ng-container matColumnDef="quantity">
+              <th mat-header-cell *matHeaderCellDef> Quantity </th>
+              <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedIngredientColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedIngredientColumns;"></tr>
+          </table>
+
+        </mat-expansion-panel>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button>LIKE</button>
+        <button mat-raised-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+
+</div>
+

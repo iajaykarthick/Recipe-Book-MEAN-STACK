@@ -1,0 +1,15 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+li {
+  padding: 6px;
+}
+
+table.mat-table {
+  width: 100%;
+  height: 100%
+}
