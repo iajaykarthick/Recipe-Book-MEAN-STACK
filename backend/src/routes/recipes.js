@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const Recipe = require('../models/recipe');
 const router = express.Router();
@@ -6,7 +7,8 @@ const storage = require('../middleware/storage')
 
 
 router.post('', multer({storage: storage}).single("image"), (req, res, next) => {
-  const url = req.protocol + '://' + req.get("host");
+  const host = process.env.HOST || req.get("host");
+  const url = req.protocol + '://' + host;
   const recipe = new Recipe({
       recipeName: req.body.recipeName,
       style: req.body.style,
