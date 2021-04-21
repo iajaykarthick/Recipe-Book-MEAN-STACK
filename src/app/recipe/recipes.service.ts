@@ -4,6 +4,10 @@ import { Router } from "@angular/router";
 import { Subject } from "rxjs";
 import { Recipe } from "./recipe.model";
 
+import { environment } from "../../environments/environment";
+
+const BACKEND_URL = environment.apiUrl + "/recipes/";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +29,7 @@ export class RecipesService {
     recipe.append('calories', calories);
     recipe.append('image', image, recipeName);
 
-    this.http.post<{recipe: any}>('http://localhost:3000/api/recipes', recipe)
+    this.http.post<{recipe: any}>(BACKEND_URL, recipe)
       .subscribe(responseData => {
         console.log(responseData.recipe);
       });
@@ -33,7 +37,7 @@ export class RecipesService {
   }
 
   getRecipes() {
-    this.http.get<{recipes: Recipe[]}>('http://localhost:3000/api/recipes')
+    this.http.get<{recipes: Recipe[]}>(BACKEND_URL)
       .subscribe(responseData => {
         console.log(responseData.recipes);
         this.recipesBook = responseData.recipes;
@@ -42,7 +46,7 @@ export class RecipesService {
   }
 
   deleteRecipe(recipeId: string) {
-    return this.http.delete('http://localhost:3000/api/recipes/' + recipeId);
+    return this.http.delete(BACKEND_URL + recipeId);
   }
 
   getRecipesUpdatedListener() {
